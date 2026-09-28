@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MotoStock — Entrar</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Outfit:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body { font-family: 'Inter', sans-serif; }
+      h1, .display { font-family: 'Outfit', sans-serif; }
+    </style>
+  </head>
+  <body class="bg-[#f8f9ff] text-[#0b1c30] min-h-screen flex items-center justify-center px-4 antialiased">
+    <div class="w-full max-w-md">
+      <div class="bg-[#213145] text-white rounded-t-2xl px-8 py-7">
+        <p class="uppercase tracking-widest text-xs text-[#bec6e0] font-semibold">Parts ERP</p>
+        <h1 class="display text-3xl font-bold tracking-tight mt-1">MotoStock</h1>
+        <p class="text-[#dae2fd] mt-1 text-sm">Entre com suas credenciais para acessar o sistema.</p>
+      </div>
+
+      <form id="login-form" class="bg-white rounded-b-2xl shadow-sm border border-[#e5eeff] px-8 py-8 space-y-5">
+        <div
+          id="error-box"
+          class="hidden text-sm rounded-lg px-3 py-2 bg-red-50 text-red-700 border border-red-200"
+        ></div>
+
+        <div>
+          <label for="email" class="block text-sm font-medium text-[#0b1c30] mb-1">E-mail</label>
+          <input
+            id="email" name="email" type="email" autocomplete="username" required
+            placeholder="voce@empresa.com"
+            class="w-full rounded-lg border border-[#d3ddf5] px-3 py-2.5 text-sm outline-none focus:border-[#213145] focus:ring-2 focus:ring-[#213145]/20"
+          />
+        </div>
+
+        <div>
+          <label for="password" class="block text-sm font-medium text-[#0b1c30] mb-1">Senha</label>
+          <input
+            id="password" name="password" type="password" autocomplete="current-password" required
+            placeholder="••••••••"
+            class="w-full rounded-lg border border-[#d3ddf5] px-3 py-2.5 text-sm outline-none focus:border-[#213145] focus:ring-2 focus:ring-[#213145]/20"
+          />
+        </div>
+
+        <button
+          id="submit-btn" type="submit"
+          class="w-full rounded-lg bg-[#213145] text-white font-semibold py-2.5 text-sm hover:bg-[#2c405a] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+        >
+          Entrar
+        </button>
+
+        <p class="text-xs text-[#5c647a] leading-relaxed">
+          Servidor: <code class="bg-[#eef3ff] px-1 rounded">http://localhost:3333/api</code>.
+          Abra sempre por <code class="bg-[#eef3ff] px-1 rounded">http://localhost:5173</code> (via <code class="bg-[#eef3ff] px-1 rounded">npm start</code>).
+        </p>
+
+        <details class="text-xs text-[#5c647a]">
+          <summary class="cursor-pointer select-none">Usuários de teste (apenas dev local)</summary>
+          <div class="mt-2 space-y-1">
+            <p>Administrador: <code class="bg-[#eef3ff] px-1 rounded">admin@motostock.com</code> / <code class="bg-[#eef3ff] px-1 rounded">admin123</code></p>
+            <p>Funcionário: <code class="bg-[#eef3ff] px-1 rounded">juliana@motostock.com</code> / <code class="bg-[#eef3ff] px-1 rounded">funcionario123</code></p>
+          </div>
+        </details>
+      </form>
+    </div>
+
+    <script>
+      (function () {
+        'use strict';
+        var API = 'http://localhost:3333/api';
+        var TOKEN_KEY = 'motostock_token';
+        var USER_KEY = 'motostock_user';
+
+        function nextUrl() {
+          try {
+            var p = new URLSearchParams(location.search).get('next');
+            return p ? decodeURIComponent(p) : 'index.html';
+          } catch (e) { return 'index.html'; }
+        }
+
+        // Ja autenticado? pula o login.
+        try {
+          if (localStorage.getItem(TOKEN_KEY)) { location.href = nextUrl(); }
+        } catch (e) {}
+
+        var form = document.getElementById('login-form');
+        var btn = document.getElementById('submit-btn');
+        var errBox = document.getElementById('error-box');
+
+        function showError(msg) {
+          errBox.textContent = msg;
+          errBox.classList.remove('hidden');
+        }
+        function hideError() { errBox.classList.add('hidden'); }
+
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          hideError();
+          var email = document.getElementById('email').value.trim();
+          var password = document.getElementById('password').value;
+          if (!email || !password) { showError('Preencha e-mail e senha.'); return; }
+
+          btn.disabled = true;
+          var original = btn.textContent;
+          btn.textContent = 'Entrando…';
+
+          fetch(API + '/auth/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: email, password: password })
+          })
+            .then(function (r) {
+              return r.json().then(function (d) { return { ok: r.ok, status: r.status, d: d }; })
+                .catch(function () { return { ok: r.ok, status: r.status, d: null }; });
+            })
+            .then(function (res) {
+              if (!res.ok) {
+                var m = (res.d && (res.d.message || res.d.error)) || ('Falha no login (HTTP ' + res.status + ').');
+                throw new Error(m);
+              }
+              var token = res.d && res.d.accessToken;
+              if (!token) throw new Error('A API não retornou o token de acesso.');
+              try {
+                localStorage.setItem(TOKEN_KEY, token);
+                if (res.d.user) localStorage.setItem(USER_KEY, JSON.stringify(res.d.user));
+              } catch (e) {}
+              location.href = nextUrl();
+            })
+            .catch(function (err) {
+              btn.disabled = false;
+              btn.textContent = original;
+              var msg = err && err.message ? err.message : 'Erro ao conectar com o servidor.';
+              if (/Failed to fetch|NetworkError/i.test(msg)) {
+                msg = 'Não foi possível conectar ao backend. Verifique se ele está rodando em localhost:3333 e se você abriu por localhost:5173.';
+              }
+              showError(msg);
+            });
+        });
+      })();
+    </script>
+  </body>
+</html>

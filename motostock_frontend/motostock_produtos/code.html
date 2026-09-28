@@ -1,0 +1,2195 @@
+<!doctype html>
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="web_dashboard" name="shell-type" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Outfit:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      @layer base {
+        html,
+        body {
+          margin: 0;
+          padding: 0;
+        }
+        body {
+          overscroll-behavior: none;
+        }
+        main > :first-child {
+          margin-top: 0 !important;
+        }
+        main > :last-child {
+          margin-bottom: 0 !important;
+        }
+      }
+      ::-webkit-scrollbar {
+        display: none;
+      }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              'surface-tint': '#bf0715',
+              'primary-container': '#dc2626',
+              'on-primary-fixed-variant': '#93000b',
+              tertiary: '#006645',
+              'on-surface-variant': '#5c403c',
+              'on-secondary': '#ffffff',
+              outline: '#916f6b',
+              error: '#ba1a1a',
+              'on-surface': '#0b1c30',
+              'surface-container-lowest': '#ffffff',
+              'tertiary-fixed': '#6ffbbe',
+              'tertiary-fixed-dim': '#4edea3',
+              'primary-fixed': '#ffdad6',
+              'on-secondary-fixed': '#131b2e',
+              secondary: '#565e74',
+              background: '#f8f9ff',
+              'on-tertiary-container': '#e1ffec',
+              'surface-bright': '#f8f9ff',
+              'primary-fixed-dim': '#ffb4ab',
+              'surface-container-low': '#eff4ff',
+              'on-secondary-container': '#5c647a',
+              'on-error': '#ffffff',
+              'outline-variant': '#e6bdb8',
+              'on-error-container': '#93000a',
+              'inverse-on-surface': '#eaf1ff',
+              'inverse-surface': '#213145',
+              'surface-dim': '#cbdbf5',
+              'on-background': '#0b1c30',
+              'surface-container': '#e5eeff',
+              'on-tertiary-fixed-variant': '#005236',
+              'surface-container-high': '#dce9ff',
+              'on-primary': '#ffffff',
+              'on-primary-fixed': '#410002',
+              'surface-container-highest': '#d3e4fe',
+              'on-secondary-fixed-variant': '#3f465c',
+              'secondary-container': '#dae2fd',
+              primary: '#b70011',
+              'secondary-fixed': '#dae2fd',
+              'on-primary-container': '#fff6f5',
+              'error-container': '#ffdad6',
+              'on-tertiary-fixed': '#002113',
+              'secondary-fixed-dim': '#bec6e0',
+              'inverse-primary': '#ffb4ab',
+              'on-tertiary': '#ffffff',
+              surface: '#f8f9ff',
+              'tertiary-container': '#008259',
+              'surface-variant': '#d3e4fe',
+            },
+            borderRadius: {
+              DEFAULT: '0.125rem',
+              lg: '0.25rem',
+              xl: '0.5rem',
+              full: '0.75rem',
+            },
+            spacing: {
+              gutter: '1rem',
+              'space-sm': '0.5rem',
+              'gutter-compact': '0.5rem',
+              'margin-mobile': '1rem',
+              'space-xl': '2rem',
+              'space-md': '0.75rem',
+              'space-xs': '0.25rem',
+              margin: '1.5rem',
+              'space-lg': '1.25rem',
+            },
+            fontFamily: {
+              'label-sm': ['Inter'],
+              'label-md': ['Inter'],
+              'headline-md': ['Outfit'],
+              'headline-sm': ['Outfit'],
+              'body-sm': ['Inter'],
+              'title-md': ['Inter'],
+              display: ['Outfit'],
+              'body-lg': ['Inter'],
+              'body-md': ['Inter'],
+              'headline-lg': ['Outfit'],
+              'code-sm': ['JetBrains Mono'],
+              'headline-lg-mobile': ['Outfit'],
+            },
+            fontSize: {
+              'label-sm': [
+                '11px',
+                {
+                  lineHeight: '14px',
+                  letterSpacing: '0.04em',
+                  fontWeight: '600',
+                },
+              ],
+              'label-md': ['13px', { lineHeight: '18px', fontWeight: '500' }],
+              'headline-md': [
+                '22px',
+                {
+                  lineHeight: '28px',
+                  letterSpacing: '-0.01em',
+                  fontWeight: '600',
+                },
+              ],
+              'headline-sm': [
+                '18px',
+                { lineHeight: '24px', fontWeight: '600' },
+              ],
+              'body-sm': ['12px', { lineHeight: '16px', fontWeight: '400' }],
+              'title-md': ['16px', { lineHeight: '22px', fontWeight: '600' }],
+              display: [
+                '36px',
+                {
+                  lineHeight: '44px',
+                  letterSpacing: '-0.02em',
+                  fontWeight: '700',
+                },
+              ],
+              'body-lg': ['16px', { lineHeight: '24px', fontWeight: '400' }],
+              'body-md': ['14px', { lineHeight: '20px', fontWeight: '400' }],
+              'headline-lg': [
+                '28px',
+                {
+                  lineHeight: '36px',
+                  letterSpacing: '-0.015em',
+                  fontWeight: '700',
+                },
+              ],
+              'code-sm': ['12px', { lineHeight: '16px', fontWeight: '500' }],
+              'headline-lg-mobile': [
+                '24px',
+                { lineHeight: '32px', fontWeight: '700' },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+
+  <script src="../motostock.js"></script>
+
+  <body class="bg-background font-body-md text-on-surface antialiased">
+    <aside
+      class="fixed left-0 top-0 h-full w-64 bg-inverse-surface text-inverse-on-surface z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"
+    >
+      <div class="flex flex-col">
+        <div
+          class="h-16 px-space-md flex items-center gap-space-sm bg-inverse-surface"
+        >
+          <img
+            alt="MotoStock Logo"
+            class="h-8 w-auto object-contain"
+            src="https://lh3.googleusercontent.com/aida/AEtjO1UiMiYtQx2QMCJI6H8M9sjddN6sEMoQPZZMRPTUSXIPe18Eeg_EaGD1N6nCqraUPLAdiK4V_cy3VDgP2qfAHAvrLd1DibTxfDOTSseZoHowDncIfAJ19CFNEs0liUyqz8pecW-ubbTWBhEBYnGoql786reExq23Va1tn-iRI1oBUVO9X2oNJNjf_xWNRMDBAteBMejqctF0wKBg0u8YXZ78r1A9rAzaJEOllGWn2e4mXMErpNQOnHGk4yc"
+          />
+          <div class="flex flex-col">
+            <span
+              class="font-headline-sm text-headline-sm font-bold tracking-tight text-surface-container-lowest leading-none"
+              >MotoStock</span
+            ><span
+              class="font-label-sm text-label-sm text-secondary-fixed-dim uppercase tracking-wider"
+              >Parts ERP Telemetry</span
+            >
+          </div>
+        </div>
+        <div class="px-space-md py-space-sm">
+          <div
+            class="bg-surface-container-highest/10 rounded-lg p-space-xs flex items-center justify-between"
+          >
+            <div class="flex items-center gap-space-xs">
+              <span
+                class="material-symbols-outlined text-secondary-fixed-dim text-sm"
+                >store</span
+              ><span
+                class="font-label-sm text-label-sm text-surface-container-lowest font-medium"
+                >Matriz SP</span
+              >
+            </div>
+            <span class="w-2 h-2 rounded-full bg-tertiary-fixed"></span>
+          </div>
+        </div>
+        <nav
+          class="flex-1 px-space-sm flex flex-col gap-space-xs overflow-y-auto"
+          data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-lg shadow-sm"
+        >
+          <a
+            class="flex items-center gap-space-sm px-space-md py-space-sm text-surface-container-high hover:bg-surface-container-highest/20 hover:text-surface-container-lowest rounded-lg transition-colors"
+            data-path="dashboard"
+            href="#"
+            ><span class="material-symbols-outlined text-base">dashboard</span
+            ><span class="font-body-md text-body-md">Dashboard</span></a
+          ><a
+            aria-current="page"
+            class="flex items-center gap-space-sm px-space-md py-space-sm transition-colors bg-primary-container text-on-primary-container font-semibold rounded-lg shadow-sm"
+            data-path="produtos"
+            href="#"
+            ><span class="material-symbols-outlined text-base">two_wheeler</span
+            ><span class="font-body-md text-body-md">Produtos</span></a
+          ><a
+            class="flex items-center gap-space-sm px-space-md py-space-sm text-surface-container-high hover:bg-surface-container-highest/20 hover:text-surface-container-lowest rounded-lg transition-colors"
+            data-path="estoque"
+            href="#"
+            ><span class="material-symbols-outlined text-base">inventory_2</span
+            ><span class="font-body-md text-body-md">Estoque</span></a
+          ><a
+            class="flex items-center gap-space-sm px-space-md py-space-sm text-surface-container-high hover:bg-surface-container-highest/20 hover:text-surface-container-lowest rounded-lg transition-colors"
+            data-path="movimentacoes"
+            href="#"
+            ><span class="material-symbols-outlined text-base">swap_horiz</span
+            ><span class="font-body-md text-body-md">Movimentações</span></a
+          ><a
+            class="flex items-center gap-space-sm px-space-md py-space-sm text-surface-container-high hover:bg-surface-container-highest/20 hover:text-surface-container-lowest rounded-lg transition-colors"
+            data-path="categorias"
+            href="#"
+            ><span class="material-symbols-outlined text-base">category</span
+            ><span class="font-body-md text-body-md">Categorias</span></a
+          ><a
+            class="flex items-center gap-space-sm px-space-md py-space-sm text-surface-container-high hover:bg-surface-container-highest/20 hover:text-surface-container-lowest rounded-lg transition-colors"
+            data-path="fornecedores"
+            href="#"
+            ><span class="material-symbols-outlined text-base"
+              >conveyor_belt</span
+            ><span class="font-body-md text-body-md">Fornecedores</span></a
+          ><a
+            class="flex items-center gap-space-sm px-space-md py-space-sm text-surface-container-high hover:bg-surface-container-highest/20 hover:text-surface-container-lowest rounded-lg transition-colors"
+            data-path="relatorios"
+            href="#"
+            ><span class="material-symbols-outlined text-base">assessment</span
+            ><span class="font-body-md text-body-md">Relatórios</span></a
+          ><a
+            class="flex items-center gap-space-sm px-space-md py-space-sm text-surface-container-high hover:bg-surface-container-highest/20 hover:text-surface-container-lowest rounded-lg transition-colors"
+            data-path="usuarios"
+            href="#"
+            ><span class="material-symbols-outlined text-base">group</span
+            ><span class="font-body-md text-body-md">Usuários</span></a
+          ><a
+            class="flex items-center gap-space-sm px-space-md py-space-sm text-surface-container-high hover:bg-surface-container-highest/20 hover:text-surface-container-lowest rounded-lg transition-colors"
+            data-path="configuracoes"
+            href="#"
+            ><span class="material-symbols-outlined text-base">settings</span
+            ><span class="font-body-md text-body-md">Configurações</span></a
+          >
+        </nav>
+      </div>
+      <div
+        class="p-space-sm m-space-sm bg-surface-container-highest/10 rounded-lg flex items-center justify-between gap-space-sm"
+      >
+        <div class="flex items-center gap-space-sm overflow-hidden">
+          <img
+            alt="Profile"
+            class="w-8 h-8 rounded-full object-cover shrink-0"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLlFCe5ntIs8MHv_OvaSDHuVKkBFVsEDU1lfgChIcydA6QFEELiAAXlejjtYPV0b6lmcK_cNmQF-r1HlG9MsnzBBHwHOfbr1X1_DToKf9aAPj4mrnXpzcl2Vd_DhXVeL2x8cO0epYo3mURxIBREAPIfvZB7CWjoxlN2wST6dTahQuErErCz9qNXDo-giPcokfj5Z5T1SDlt5WXbsJNgctHscYKjjimCc1d3H1aaR1A0UkP3JRzkCZQ"
+          />
+          <div class="flex flex-col truncate">
+            <span
+              class="font-body-sm text-body-sm font-semibold text-surface-container-lowest truncate"
+              >Carlos Mendes</span
+            ><span
+              class="font-label-sm text-label-sm text-primary-fixed font-bold tracking-tight uppercase"
+              >Administrador</span
+            >
+          </div>
+        </div>
+        <button
+          aria-label="Sair do Sistema"
+          class="p-space-xs text-surface-container-high hover:text-error-container transition-colors"
+          type="button"
+        >
+          <span class="material-symbols-outlined text-lg">logout</span>
+        </button>
+      </div>
+    </aside>
+    <div class="pl-64">
+      <header
+        class="fixed top-0 left-64 right-0 h-16 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-lg"
+      >
+        <div class="flex items-center gap-space-md w-full max-w-xl">
+          <button
+            aria-label="Menu"
+            class="p-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors lg:hidden"
+            type="button"
+          >
+            <span class="material-symbols-outlined">menu</span>
+          </button>
+          <div class="relative w-full">
+            <span
+              class="material-symbols-outlined absolute left-space-md top-1/2 -translate-y-1/2 text-on-surface-variant text-base"
+              >search</span
+            ><input
+              class="w-full h-10 pl-10 pr-16 bg-surface-container-low rounded-lg font-body-sm text-body-sm text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:bg-surface-container-lowest focus:ring-1 focus:ring-primary-container"
+              placeholder="Buscar peças, código SKU, barcode, fornecedor..."
+              type="text"
+            /><span
+              class="absolute right-space-sm top-1/2 -translate-y-1/2 font-code-sm text-code-sm px-space-xs py-0.5 bg-surface-container rounded text-on-surface-variant"
+              >Ctrl K</span
+            >
+          </div>
+        </div>
+        <div class="flex items-center gap-space-md shrink-0">
+          <div class="hidden md:flex items-center gap-space-xs">
+            <button
+              class="flex items-center gap-space-xs h-9 px-space-md bg-tertiary text-on-tertiary rounded-lg font-label-md text-label-md hover:bg-tertiary-container transition-colors"
+              type="button"
+            >
+              <span class="material-symbols-outlined text-sm">add_circle</span
+              ><span>+ Nova Entrada</span></button
+            ><button
+              class="flex items-center gap-space-xs h-9 px-space-md bg-primary-container text-on-primary-container rounded-lg font-label-md text-label-md hover:bg-primary transition-colors"
+              type="button"
+            >
+              <span class="material-symbols-outlined text-sm"
+                >remove_circle</span
+              ><span>+ Nova Saída</span>
+            </button>
+          </div>
+          <div class="relative">
+            <button
+              aria-label="Alertas e Notificações"
+              class="relative p-space-xs text-on-surface-variant hover:bg-surface-container hover:text-on-surface rounded-lg transition-colors"
+              type="button"
+            >
+              <span class="material-symbols-outlined">notifications</span
+              ><span
+                class="absolute top-1 right-1 w-4 h-4 bg-primary text-on-primary font-label-sm text-[10px] rounded-full flex items-center justify-center font-bold"
+                >4</span
+              >
+            </button>
+          </div>
+          <div class="h-6 w-px bg-surface-container-high hidden sm:block"></div>
+          <div class="flex items-center gap-space-sm">
+            <div class="hidden sm:flex flex-col text-right">
+              <span
+                class="font-label-md text-label-md font-semibold text-on-surface"
+                >Carlos Mendes</span
+              ><span
+                class="font-label-sm text-label-sm text-tertiary font-medium"
+                >Matriz SP - Online</span
+              >
+            </div>
+            <img
+              alt="Profile"
+              class="w-8 h-8 rounded-full object-cover"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLlFCe5ntIs8MHv_OvaSDHuVKkBFVsEDU1lfgChIcydA6QFEELiAAXlejjtYPV0b6lmcK_cNmQF-r1HlG9MsnzBBHwHOfbr1X1_DToKf9aAPj4mrnXpzcl2Vd_DhXVeL2x8cO0epYo3mURxIBREAPIfvZB7CWjoxlN2wST6dTahQuErErCz9qNXDo-giPcokfj5Z5T1SDlt5WXbsJNgctHscYKjjimCc1d3H1aaR1A0UkP3JRzkCZQ"
+            />
+          </div>
+        </div>
+      </header>
+      <main class="w-full pt-16 bg-background px-space-lg py-space-lg">
+        <div class="flex flex-col w-full">
+          <!-- Top Stats Strip -->
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter mb-space-lg"
+          >
+            <div
+              class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-center justify-between"
+            >
+              <div class="flex flex-col">
+                <span
+                  class="font-label-sm text-label-sm text-secondary uppercase tracking-wider"
+                  >Total em Catálogo</span
+                >
+                <span
+                  class="font-display text-headline-lg font-bold text-on-surface mt-1"
+                  >1.248</span
+                >
+                <div class="flex items-center gap-space-xs mt-1">
+                  <span
+                    class="font-label-sm text-label-sm text-tertiary font-semibold flex items-center"
+                  >
+                    <span class="material-symbols-outlined text-xs"
+                      >trending_up</span
+                    >
+                    +3.8%
+                  </span>
+                  <span class="font-body-sm text-body-sm text-secondary"
+                    >este mês</span
+                  >
+                </div>
+              </div>
+              <div
+                class="w-12 h-12 rounded-xl bg-inverse-surface text-surface-container-lowest flex items-center justify-center shrink-0"
+              >
+                <span class="material-symbols-outlined text-xl"
+                  >two_wheeler</span
+                >
+              </div>
+            </div>
+            <div
+              class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-center justify-between"
+            >
+              <div class="flex flex-col">
+                <span
+                  class="font-label-sm text-label-sm text-secondary uppercase tracking-wider"
+                  >Itens em Alerta Crítico</span
+                >
+                <span
+                  class="font-display text-headline-lg font-bold text-primary-container mt-1"
+                  >14</span
+                >
+                <div class="flex items-center gap-space-xs mt-1">
+                  <span
+                    class="font-label-sm text-label-sm text-primary font-semibold flex items-center"
+                  >
+                    <span class="material-symbols-outlined text-xs"
+                      >priority_high</span
+                    >
+                    6 esgotados
+                  </span>
+                </div>
+              </div>
+              <div
+                class="w-12 h-12 rounded-xl bg-primary-fixed text-primary flex items-center justify-center shrink-0"
+              >
+                <span class="material-symbols-outlined text-xl"
+                  >notification_important</span
+                >
+              </div>
+            </div>
+            <div
+              class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-center justify-between"
+            >
+              <div class="flex flex-col">
+                <span
+                  class="font-label-sm text-label-sm text-secondary uppercase tracking-wider"
+                  >Patrimônio de Estoque</span
+                >
+                <span
+                  class="font-display text-headline-lg font-bold text-on-surface mt-1"
+                  >R$ 482.940</span
+                >
+                <div class="flex items-center gap-space-xs mt-1">
+                  <span
+                    class="font-label-sm text-label-sm text-tertiary font-semibold"
+                    >Giro 18.4 d</span
+                  >
+                  <span class="font-body-sm text-body-sm text-secondary"
+                    >médio</span
+                  >
+                </div>
+              </div>
+              <div
+                class="w-12 h-12 rounded-xl bg-surface-container-high text-on-surface flex items-center justify-center shrink-0"
+              >
+                <span class="material-symbols-outlined text-xl"
+                  >account_balance_wallet</span
+                >
+              </div>
+            </div>
+            <div
+              class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-center justify-between"
+            >
+              <div class="flex flex-col">
+                <span
+                  class="font-label-sm text-label-sm text-secondary uppercase tracking-wider"
+                  >Margem Bruta Média</span
+                >
+                <span
+                  class="font-display text-headline-lg font-bold text-tertiary mt-1"
+                  >44.6%</span
+                >
+                <div class="flex items-center gap-space-xs mt-1">
+                  <span
+                    class="font-label-sm text-label-sm text-secondary font-medium"
+                    >Markup 1.82x</span
+                  >
+                </div>
+              </div>
+              <div
+                class="w-12 h-12 rounded-xl bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center shrink-0"
+              >
+                <span class="material-symbols-outlined text-xl"
+                  >monitoring</span
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Page Header & Action Bar -->
+          <div
+            class="flex flex-col md:flex-row md:items-center justify-between gap-space-md mb-space-lg"
+          >
+            <div class="flex flex-col">
+              <div class="flex items-center gap-space-sm">
+                <h1
+                  class="font-headline-lg text-headline-lg font-bold text-on-surface tracking-tight"
+                >
+                  Produtos
+                </h1>
+                <span
+                  class="px-space-sm py-0.5 bg-surface-container-high rounded-full font-code-sm text-code-sm text-on-surface font-semibold"
+                  >SKU-CAT-2024</span
+                >
+              </div>
+              <p class="font-body-md text-body-md text-secondary mt-0.5">
+                Gerencie o catálogo completo de peças mecânicas, acessórios de
+                reposição e equipamentos motociclísticos.
+              </p>
+            </div>
+            <div class="flex flex-wrap items-center gap-space-sm">
+              <button
+                class="h-10 px-space-md bg-surface-container-lowest hover:bg-surface-container text-on-surface rounded-xl font-label-md text-label-md flex items-center gap-space-xs shadow-sm transition-colors"
+                type="button"
+              >
+                <span class="material-symbols-outlined text-sm"
+                  >file_download</span
+                >
+                <span>Exportar (Excel/PDF)</span>
+              </button>
+              <button
+                class="h-10 px-space-md bg-surface-container-lowest hover:bg-surface-container text-on-surface rounded-xl font-label-md text-label-md flex items-center gap-space-xs shadow-sm transition-colors"
+                type="button"
+              >
+                <span class="material-symbols-outlined text-sm"
+                  >upload_file</span
+                >
+                <span>Importar XML/NFe</span>
+              </button>
+              <button
+                class="h-10 px-space-lg bg-primary-container hover:bg-primary text-on-primary-container rounded-xl font-label-md text-label-md font-semibold flex items-center gap-space-xs shadow-sm transition-all hover:shadow-md"
+                id="btn-open-modal"
+                onclick="
+                  document
+                    .getElementById('modal-novo-produto')
+                    .classList.remove('hidden')
+                "
+                type="button"
+              >
+                <span class="material-symbols-outlined text-base"
+                  >add_circle</span
+                >
+                <span>+ Novo Produto</span>
+              </button>
+            </div>
+          </div>
+          <!-- Filters Toolbar Box -->
+          <div
+            class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm mb-space-lg flex flex-col gap-space-md"
+          >
+            <!-- Row 1: Omnibar Search & View Switcher -->
+            <div
+              class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-space-md"
+            >
+              <div class="relative flex-1">
+                <span
+                  class="material-symbols-outlined absolute left-space-md top-1/2 -translate-y-1/2 text-secondary text-lg"
+                  >search</span
+                >
+                <input
+                  class="w-full h-11 pl-11 pr-24 bg-surface-container-low rounded-xl font-body-md text-body-md text-on-surface placeholder:text-secondary focus:outline-none focus:bg-surface-container-lowest shadow-sm"
+                  placeholder="Buscar por produto, SKU, código de barras, marca ou aplicação..."
+                  type="text"
+                />
+                <span
+                  class="absolute right-3 top-1/2 -translate-y-1/2 font-code-sm text-code-sm px-1.5 py-0.5 bg-surface-container-high rounded text-secondary font-medium"
+                  >Ctrl + F</span
+                >
+              </div>
+              <div
+                class="flex items-center gap-space-sm justify-between lg:justify-end shrink-0"
+              >
+                <div
+                  class="flex items-center bg-surface-container-low p-1 rounded-xl"
+                >
+                  <button
+                    class="flex items-center gap-space-xs px-space-sm py-1.5 rounded-lg bg-surface-container-lowest text-on-surface font-label-sm text-label-sm font-semibold shadow-sm transition-colors"
+                    type="button"
+                  >
+                    <span class="material-symbols-outlined text-sm"
+                      >table_rows</span
+                    >
+                    <span>Tabela</span>
+                  </button>
+                  <button
+                    class="flex items-center gap-space-xs px-space-sm py-1.5 rounded-lg text-secondary hover:text-on-surface font-label-sm text-label-sm font-medium transition-colors"
+                    type="button"
+                  >
+                    <span class="material-symbols-outlined text-sm"
+                      >grid_view</span
+                    >
+                    <span>Cards</span>
+                  </button>
+                </div>
+                <button
+                  class="h-10 px-space-sm bg-surface-container-low text-secondary hover:text-on-surface rounded-xl flex items-center gap-1 font-label-sm text-label-sm transition-colors"
+                  title="Limpar Filtros"
+                  type="button"
+                >
+                  <span class="material-symbols-outlined text-sm"
+                    >filter_alt_off</span
+                  >
+                  <span class="hidden sm:inline">Limpar</span>
+                </button>
+              </div>
+            </div>
+            <!-- Row 2: Facet Select Dropdowns -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-space-sm">
+              <div class="flex flex-col">
+                <label class="font-label-sm text-label-sm text-secondary mb-1"
+                  >Categoria</label
+                >
+                <div class="relative">
+                  <select
+                    class="w-full h-10 px-space-md pr-8 bg-surface-container-low text-on-surface font-label-md text-label-md rounded-xl appearance-none focus:outline-none focus:bg-surface-container-lowest"
+                  >
+                    <option>Todas as Categorias</option>
+                    <option>Freios & Pastilhas</option>
+                    <option>Pneus & Câmaras</option>
+                    <option>Capacetes & Vestuário</option>
+                    <option>Relação & Transmissão</option>
+                    <option>Óleos & Lubrificantes</option>
+                    <option>Elétrica & Baterias</option>
+                    <option>Motor & Cabeçote</option>
+                  </select>
+                  <span
+                    class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-secondary pointer-events-none text-base"
+                    >expand_more</span
+                  >
+                </div>
+              </div>
+              <div class="flex flex-col">
+                <label class="font-label-sm text-label-sm text-secondary mb-1"
+                  >Marca / Fabricante</label
+                >
+                <div class="relative">
+                  <select
+                    class="w-full h-10 px-space-md pr-8 bg-surface-container-low text-on-surface font-label-md text-label-md rounded-xl appearance-none focus:outline-none focus:bg-surface-container-lowest"
+                  >
+                    <option>Todas as Marcas</option>
+                    <option>Cobreq</option>
+                    <option>Pirelli</option>
+                    <option>Pro Tork</option>
+                    <option>DID Japão</option>
+                    <option>Motul</option>
+                    <option>Pioneiro</option>
+                    <option>Honda Original</option>
+                    <option>Yamaha Genuíno</option>
+                  </select>
+                  <span
+                    class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-secondary pointer-events-none text-base"
+                    >expand_more</span
+                  >
+                </div>
+              </div>
+              <div class="flex flex-col">
+                <label class="font-label-sm text-label-sm text-secondary mb-1"
+                  >Status do Estoque</label
+                >
+                <div class="relative">
+                  <select
+                    class="w-full h-10 px-space-md pr-8 bg-surface-container-low text-on-surface font-label-md text-label-md rounded-xl appearance-none focus:outline-none focus:bg-surface-container-lowest"
+                  >
+                    <option>Todos os Status</option>
+                    <option>Em Estoque (> Mínimo)</option>
+                    <option>Estoque Baixo (Reposição)</option>
+                    <option>Crítico / Zerado</option>
+                  </select>
+                  <span
+                    class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-secondary pointer-events-none text-base"
+                    >expand_more</span
+                  >
+                </div>
+              </div>
+              <div class="flex flex-col">
+                <label class="font-label-sm text-label-sm text-secondary mb-1"
+                  >Fornecedor Credenciado</label
+                >
+                <div class="relative">
+                  <select
+                    class="w-full h-10 px-space-md pr-8 bg-surface-container-low text-on-surface font-label-md text-label-md rounded-xl appearance-none focus:outline-none focus:bg-surface-container-lowest"
+                  >
+                    <option>Todos os Fornecedores</option>
+                    <option>Distribuidora Paulista Ltda</option>
+                    <option>MotoPeças Brasil Atacado</option>
+                    <option>Rinaldi & Cia Distribuição</option>
+                    <option>Cobreq Moto Parts Brasil</option>
+                  </select>
+                  <span
+                    class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-secondary pointer-events-none text-base"
+                    >expand_more</span
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- Active Indicators and Summary Counters -->
+            <div
+              class="flex flex-wrap items-center justify-between gap-space-sm pt-space-xs"
+            >
+              <div class="flex items-center gap-space-xs">
+                <span class="w-2 h-2 rounded-full bg-tertiary"></span>
+                <span
+                  class="font-label-md text-label-md text-on-surface font-semibold"
+                  >Mostrando 6 de 1.248 produtos cadastrados</span
+                >
+                <span class="text-secondary text-body-sm"
+                  >(Filtros ativos: 0)</span
+                >
+              </div>
+              <div
+                class="flex items-center gap-space-xs font-label-sm text-label-sm text-secondary"
+              >
+                <span
+                  >Última sincronização de preços:
+                  <strong class="text-on-surface">Hoje, às 14:32</strong></span
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Main High-Density Product Data Grid -->
+          <div
+            class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden mb-space-lg"
+          >
+            <div class="overflow-x-auto w-full">
+              <table class="w-full text-left border-collapse min-w-[1300px]">
+                <thead>
+                  <tr
+                    class="bg-surface-container-low text-secondary font-label-sm text-label-sm uppercase tracking-wider"
+                  >
+                    <th class="py-space-md px-space-md w-12 text-center">
+                      <input
+                        class="w-4 h-4 rounded text-primary-container focus:ring-0 cursor-pointer"
+                        type="checkbox"
+                      />
+                    </th>
+                    <th class="py-space-md px-space-sm w-16">Foto</th>
+                    <th class="py-space-md px-space-md">
+                      Produto & Especificação
+                    </th>
+                    <th class="py-space-md px-space-md">SKU / EAN</th>
+                    <th class="py-space-md px-space-md">Categoria</th>
+                    <th class="py-space-md px-space-md">Marca</th>
+                    <th class="py-space-md px-space-md">Aplicação Moto</th>
+                    <th class="py-space-md px-space-md text-right">P. Custo</th>
+                    <th class="py-space-md px-space-md text-right">
+                      P. Venda (Margem)
+                    </th>
+                    <th class="py-space-md px-space-md text-center">
+                      Nível Estoque
+                    </th>
+                    <th class="py-space-md px-space-md">Status</th>
+                    <th class="py-space-md px-space-md text-center w-28">
+                      Ações
+                    </th>
+                  </tr>
+                </thead>
+                <tbody
+                  class="divide-y-0 font-body-md text-body-md text-on-surface"
+                >
+                  <!-- Row 1: Cobreq Pastilha -->
+                  <tr
+                    class="hover:bg-surface-container-low/60 transition-colors group"
+                  >
+                    <td class="py-3 px-space-md text-center">
+                      <input
+                        class="w-4 h-4 rounded text-primary-container focus:ring-0 cursor-pointer"
+                        type="checkbox"
+                      />
+                    </td>
+                    <td class="py-3 px-space-sm">
+                      <div
+                        class="relative w-12 h-12 rounded-lg bg-surface-container overflow-hidden shrink-0 flex items-center justify-center"
+                      >
+                        <img
+                          class="w-full h-full object-cover"
+                          data-alt="High-performance motorcycle ceramic brake pads with copper backing plate, studio lighting, clinical clean background, automotive technical spare part detail photography."
+                          src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzTzMyvxxuC_zqc4YnDa0cE0XtK3R9LNSBaDBqSvkUF4FpiKI0GaRtAPEUIHzAsDRgxU5uR4Q791Qz2vCjLmPOfVWLhWZgmiUi8zOG9pllGBDzOngoI-UYERDM-Z7hg3X2dAXgp4b_2-cx_JJhSasq2YV3CM3Di0AAuhiyYGRzK6GoJkvktgsWwsm1tUS0DNnUFmSJwuNLfmw4GUnRdOZACsJHOSpeBFWV8CYoRdLPIP96qdyA020R"
+                        />
+                      </div>
+                    </td>
+                    <td class="py-3 px-space-md">
+                      <div class="flex flex-col">
+                        <a
+                          class="font-title-md text-title-md font-semibold text-on-surface hover:text-primary-container transition-colors line-clamp-1"
+                          href="#"
+                          >Kit Pastilha de Freio Dianteira Cobreq Street</a
+                        >
+                        <span
+                          class="font-body-sm text-body-sm text-secondary mt-0.5"
+                          >Composto semi-metálico N-942, alta durabilidade e
+                          frenagem progressiva</span
+                        >
+                      </div>
+                    </td>
+                    <td class="py-3 px-space-md">
+                      <div class="flex flex-col font-code-sm text-code-sm">
+                        <span class="font-semibold text-on-surface"
+                          >FRE-COB-01</span
+                        >
+                        <span class="text-secondary text-[11px]"
+                          >7891234567890</span
+                        >
+                      </div>
+                    </td>
+                    <td class="py-3 px-space-md">
+                      <span
+                        class="inline-flex px-2 py-0.5 rounded font-label-sm text-label-sm bg-surface-container-high text-on-surface font-medium"
+                        >Freios</span
+                      >
+                    </td>
+                    <td class="py-3 px-space-md">
+                      <span
+                        class="font-label-md text-label-md font-semibold text-on-surface"
+                        >Cobreq</span
+                      >
+                    </td>
+                    <td class="py-3 px-space-md">
+                      <span
+                        class="inline-flex items-center gap-1 px-2 py-0.5 rounded font-label-sm text-label-sm bg-secondary-container text-on-secondary-fixed font-medium"
+                      >
+                        <span class="material-symbols-outlined text-[12px]"
+                          >motorcycle</span
+                        >
+                        Honda CG 160 Fan / Titan
+                      </span>
+                    </td>
+                    <td
+                      class="py-3 px-space-md text-right font-code-sm text-code-sm text-secondary"
+                    >
+                      R$ 32,50
+                    </td>
+                    <td class="py-3 px-space-md text-right">
+                      <div class="flex flex-col items-end">
+                        <span
+                          class="font-title-md text-title-md font-bold text-on-surface"
+                          >R$ 59,90</span
+                        >
+                        <span
+                          class="font-label-sm text-label-sm text-tertiary font-semibold flex items-center gap-0.5"
+                        >
+                          <span class="material-symbols-outlined text-[10px]"
+                            >north_east</span
+                          >
+                          +45.7%
+                        </span>
+                      </div>
+                    </td>
+                    <td class="py-3 px-space-md">
+                      <div class="flex flex-col items-center gap-1">
+                        <div
+                          class="flex justify-between w-24 text-[11px] font-code-sm font-semibold"
+                        >
+                          <span class="text-on-surface">48 un</span>
+                          <span class="text-secondary">Mín: 15</span>
+                        </div>
+                        <div
+                          class="w-24 h-2 bg-surface-container-high rounded-full overflow-hidden"
+                        >
+                          <div
+                            class="h-full bg-tertiary rounded-full"
+                            style="width: 80%"
+                          ></div>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="py-3 px-space-md">
+                      <span
+                        class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-label-sm text-label-sm bg-tertiary-fixed/30 text-on-tertiary-fixed-variant font-bold"
+                      >
+                        <span
+                          class="w-1.5 h-1.5 rounded-full bg-tertiary"
+                        ></span>
+                        Em estoque
+                      </span>
+                    </td>
+                    <td class="py-3 px-space-md text-center">
+                      <div class="flex items-center justify-center gap-1">
+                        <button
+                          class="w-8 h-8 rounded-lg text-secondary hover:text-on-surface hover:bg-surface-container transition-colors flex items-center justify-center"
+                          title="Visualizar Detalhes"
+                          type="button"
+                        >
+                          <span class="material-symbols-outlined text-base"
+                            >visibility</span
+                          >
+                        </button>
+                        <button
+                          class="w-8 h-8 rounded-lg text-secondary hover:text-primary-container hover:bg-surface-container transition-colors flex items-center justify-center"
+                          title="Editar Produto"
+                          type="button"
+                        >
+                          <span class="material-symbols-outlined text-base"
+                            >edit</span
+                          >
+                        </button>
+                        <button
+                          class="w-8 h-8 rounded-lg text-secondary hover:text-error hover:bg-surface-container transition-colors flex items-center justify-center"
+                          title="Excluir"
+                          type="button"
+                        >
+                          <span class="material-symbols-outlined text-base"
+                            >delete</span
+                          >
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <!-- Row 2: Pneu Pirelli City Dragon -->
+                  <tr
+                    class="hover:bg-surface-container-low/60 transition-colors bg-surface-container-lowest"
+                  >
+                    <td class="py-3 px-space-md text-center">
+                      <input
+                        class="w-4 h-4 rounded text-primary-container focus:ring-0 cursor-pointer"
+                        type="checkbox"
+                      />
+                    </td>
+                    <td class="py-3 px-space-sm">
+                      <div
+                        class="relative w-12 h-12 rounded-lg bg-surface-container overflow-hidden shrink-0 flex items-center justify-center"
+                      >
+                        <img
+                          class="w-full h-full object-cover"
+                          data-alt="Rugged motorcycle tubeless rear tire with deep street tread pattern, deep black rubber texture, isolated technical studio shot for motorcycle spare parts catalog."
+                          src="https://lh3.googleusercontent.com/aida-public/AB6AXuAf22f_eVSdxvHbSAS5MdPtWvLABrLOkk6GAuBu_yHsnh6bHCdJmb5gjX5Z9LVnJhzMbr9qBMwWONFUrRM844z4ROOKyXc5uPjLDMOg3_kF3bxObKuXhGj6KI3ChEcxSipAn5yFw5f8s0woaFPkj2VLtlx0ZzoKHThvHTRKcYL_9-Rzm3Zqw2okFYiPGeDo2_Qaw5wHZsjBEHUaShsQ6sSmsl_qOmFOESl_uYvN7xi_iIqoQqjSFPkO"
+                        />
+                      </div>
+                    </td>
+                    <td class="py-3 px-space-md">
+                      <div class="flex flex-col">
+                        <a
+                          class="font-title-md text-title-md font-semibold text-on-surface hover:text-primary-container transition-colors line-clamp-1"
+                          href="#"
+                          >Pneu Traseiro 90/90-18 57P City Dragon Pirelli</a
+                        >
+                        <span
+                          class="font-body-sm text-body-sm text-secondary mt-0.5"
+                          >Alta drenagem de água, carcaça reforçada para uso
+                          urbano severo</span
+                        >
+                      </div>
+                    </td>
+                    <td class="py-3 px-space-md">
+                      <div class="flex flex-col font-code-sm text-code-sm">
+                        <span class="font-semibold text-on-surface"
+                          >PNE-PIR-90</span
+                        >
+                        <span class="text-secondary text-[11px]"
+                          >7894561230123</span
+                        >
+                      </div>
+                    </td>
+                    <td class="py-3 px-space-md">
+                      <span
+                        class="inline-flex px-2 py-0.5 rounded font-label-sm text-label-sm bg-surface-container-high text-on-surface font-medium"
+                        >Pneus</span
+                      >
+                    </td>
+                    <td class="py-3 px-space-md">
+                      <span
+                        class="font-label-md text-label-md font-semibold text-on-surface"
+                        >Pirelli</span
+                      >
+                    </td>
+                    <td class="py-3 px-space-md">
+                      <span
+                        class="inline-flex items-center gap-1 px-2 py-0.5 rounded font-label-sm text-label-sm bg-secondary-container text-on-secondary-fixed font-medium"
+                      >
+                        <span class="material-symbols-outlined text-[12px]"
+                          >motorcycle</span
+                        >
+                        CG 150/160, YBR 125, Factor
+                      </span>
+                    </td>
+                    <td
+                      class="py-3 px-space-md text-right font-code-sm text-code-sm text-secondary"
+                    >
+                      R$ 180,00
+                    </td>
+                    <td class="py-3 px-space-md text-right">
+                      <div class="flex flex-col items-end">
+                        <span
+                          class="font-title-md text-title-md font-bold text-on-surface"
+                          >R$ 289,90</span
+                        >
+                        <span
+                          class="font-label-sm text-label-sm text-tertiary font-semibold flex items-center gap-0.5"
+                        >
+                          <span class="material-symbols-outlined text-[10px]"
+                            >north_east</span
+                          >
+                          +37.9%
+                        </span>
+                      </div>
+                    </td>
+                    <td class="py-3 px-space-md">
+                      <div class="flex flex-col items-center gap-1">
+                        <div
+                          class="flex justify-between w-24 text-[11px] font-code-sm font-semibold"
+                        >
+                          <span class="text-error font-bold">4 un</span>
+                          <span class="text-secondary">Mín: 10</span>
+                        </div>
+                        <div
+                          class="w-24 h-2 bg-surface-container-high rounded-full overflow-hidden"
+                        >
+                          <div
+                            class="h-full bg-error rounded-full"
+                            style="width: 25%"
+                          ></div>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="py-3 px-space-md">
+                      <span
+                        class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-label-sm text-label-sm bg-error-container text-on-error-container font-bold"
+                      >
+                        <span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+                        Estoque baixo
+                      </span>
+                    </td>
+                    <td class="py-3 px-space-md text-center">
+                      <div class="flex items-center justify-center gap-1">
+                        <button
+                          class="w-8 h-8 rounded-lg text-secondary hover:text-on-surface hover:bg-surface-container transition-colors flex items-center justify-center"
+                          title="Visualizar Detalhes"
+                          type="button"
+                        >
+                          <span class="material-symbols-outlined text-base"
+                            >visibility</span
+                          >
+                        </button>
+                        <button
+                          class="w-8 h-8 rounded-lg text-secondary hover:text-primary-container hover:bg-surface-container transition-colors flex items-center justify-center"
+                          title="Editar Produto"
+                          type="button"
+                        >
+                          <span class="material-symbols-outlined text-base"
+                            >edit</span
+                          >
+                        </button>
+                        <button
+                          class="w-8 h-8 rounded-lg text-secondary hover:text-error hover:bg-surface-container transition-colors flex items-center justify-center"
+                          title="Excluir"
+                          type="button"
+                        >
+                          <span class="material-symbols-outlined text-base"
+                            >delete</span
+                          >
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <!-- Row 3: Capacete Pro Tork Stealth -->
+                  <tr
+                    class="hover:bg-surface-container-low/60 transition-colors bg-surface-container-lowest"
+                  >
+                    <td class="py-3 px-space-md text-center">
+                      <input
+                        class="w-4 h-4 rounded text-primary-container focus:ring-0 cursor-pointer"
+                        type="checkbox"
+                      />
+                    </td>
+                    <td class="py-3 px-space-sm">
+                      <div
+                        class="relative w-12 h-12 rounded-lg bg-surface-container overflow-hidden shrink-0 flex items-center justify-center"
+                      >
+                        <img
+                          class="w-full h-full object-cover"
+                          data-alt="Matte black motorcycle full-face helmet with dark smoked aerodynamic visor, aggressive vents, angled dramatic catalog product photography, high-end motor gear."
+                          src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmvPO6XtWNLOfevEZfQn4XYOz9gcPmD5U8hr5mReE6Q7dpa9pX8EfbYk3db4jcp43GoPNCVIi1jZO0PQWfMttOiy8TOJB-1JosCTjATRcU5vyHxsPcBeI-d62r9uieoVcvP9QMoYozSy2HT6k1Tq6I5xlp425Sm9BJjsx8Honrf_jb0VbApO46oWIVQD2Y9dZSLJYrtA3SKPpR97iyTI5hP1yfWfVFifsBXTBcQW9-Rf6t5cqSkbAC"
+                        />
+                      </div>
+                    </td>
+                    <td class="py-3 px-space-md">
+                      <div class="flex flex-col">
+                        <a
+                          class="font-title-md text-title-md font-semibold text-on-surface hover:text-primary-container transition-colors line-clamp-1"
+                          href="#"
+                          >Capacete Fechado Pro Tork Stealth Fosco Tam 58</a
+                        >
+                        <span
+                          class="font-body-sm text-body-sm text-secondary mt-0.5"
+                          >Injetado em ABS virgem, forração hipoalergênica
+                          removível e viseira 2mm</span
+                        >
+                      </div>
+                    </td>
+                    <td class="py-3 px-space-md">
+                      <div class="flex flex-col font-code-sm text-code-sm">
+                        <span class="font-semibold text-on-surface"
+                          >CAP-PTK-58</span
+                        >
+                        <span class="text-secondary text-[11px]"
+                          >7899876543210</span
+                        >
+                      </div>
+                    </td>
+                    <td class="py-3 px-space-md">
+                      <span
+                        class="inline-flex px-2 py-0.5 rounded font-label-sm text-label-sm bg-surface-container-high text-on-surface font-medium"
+                        >Vestuário / EPI</span
+                      >
+                    </td>
+                    <td class="py-3 px-space-md">
+                      <span
+                        class="font-label-md text-label-md font-semibold text-on-surface"
+                        >Pro Tork</span
+                      >
+                    </td>
+                    <td class="py-3 px-space-md">
+                      <span
+                        class="inline-flex items-center gap-1 px-2 py-0.5 rounded font-label-sm text-label-sm bg-surface-container text-on-surface font-medium"
+                      >
+                        Universal
+                      </span>
+                    </td>
+                    <td
+                      class="py-3 px-space-md text-right font-code-sm text-code-sm text-secondary"
+                    >
+                      R$ 195,00
+                    </td>
+                    <td class="py-3 px-space-md text-right">
+                      <div class="flex flex-col items-end">
+                        <span
+                          class="font-title-md text-title-md font-bold text-on-surface"
+                          >R$ 349,90</span
+                        >
+                        <span
+                          class="font-label-sm text-label-sm text-tertiary font-semibold flex items-center gap-0.5"
+                        >
+                          <span class="material-symbols-outlined text-[10px]"
+                            >north_east</span
+                          >
+                          +44.2%
+                        </span>
+                      </div>
+                    </td>
+                    <td class="py-3 px-space-md">
+                      <div class="flex flex-col items-center gap-1">
+                        <div
+                          class="flex justify-between w-24 text-[11px] font-code-sm font-semibold"
+                        >
+                          <span class="text-on-surface">19 un</span>
+                          <span class="text-secondary">Mín: 6</span>
+                        </div>
+                        <div
+                          class="w-24 h-2 bg-surface-container-high rounded-full overflow-hidden"
+                        >
+                          <div
+                            class="h-full bg-tertiary rounded-full"
+                            style="width: 75%"
+                          ></div>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="py-3 px-space-md">
+                      <span
+                        class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-label-sm text-label-sm bg-tertiary-fixed/30 text-on-tertiary-fixed-variant font-bold"
+                      >
+                        <span
+                          class="w-1.5 h-1.5 rounded-full bg-tertiary"
+                        ></span>
+                        Em estoque
+                      </span>
+                    </td>
+                    <td class="py-3 px-space-md text-center">
+                      <div class="flex items-center justify-center gap-1">
+                        <button
+                          class="w-8 h-8 rounded-lg text-secondary hover:text-on-surface hover:bg-surface-container transition-colors flex items-center justify-center"
+                          title="Visualizar Detalhes"
+                          type="button"
+                        >
+                          <span class="material-symbols-outlined text-base"
+                            >visibility</span
+                          >
+                        </button>
+                        <button
+                          class="w-8 h-8 rounded-lg text-secondary hover:text-primary-container hover:bg-surface-container transition-colors flex items-center justify-center"
+                          title="Editar Produto"
+                          type="button"
+                        >
+                          <span class="material-symbols-outlined text-base"
+                            >edit</span
+                          >
+                        </button>
+                        <button
+                          class="w-8 h-8 rounded-lg text-secondary hover:text-error hover:bg-surface-container transition-colors flex items-center justify-center"
+                          title="Excluir"
+                          type="button"
+                        >
+                          <span class="material-symbols-outlined text-base"
+                            >delete</span
+                          >
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <!-- Row 4: Kit Transmissao DID CG 160 -->
+                  <tr
+                    class="hover:bg-surface-container-low/60 transition-colors bg-surface-container-lowest"
+                  >
+                    <td class="py-3 px-space-md text-center">
+                      <input
+                        class="w-4 h-4 rounded text-primary-container focus:ring-0 cursor-pointer"
+                        type="checkbox"
+                      />
+                    </td>
+                    <td class="py-3 px-space-sm">
+                      <div
+                        class="relative w-12 h-12 rounded-lg bg-surface-container overflow-hidden shrink-0 flex items-center justify-center"
+                      >
+                        <img
+                          class="w-full h-full object-cover"
+                          data-alt="Motorcycle drive chain and rear sprocket steel kit, precision machined teeth, golden roller chain links, isolated technical automotive catalog display on bright white background."
+                          src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaALx7QOMLGlx0yuVabh0HJNh_Lpd6fbtcoeNnSz1UT6aXcmybB4QKIUbt2f2O65BkMwXtWVAkoHj94ZOGwC4L7vbwuROZy0rSJHGzR1wzmq61AdIQtG1pB7owQabDRDWmc_gUsog_mOdoddbm-DK5KjqLC0l2jBgt3CPaOiFDD9mGXgDtIsQtup3dWyCEbbkM4ma3TCbP5A6mr5sfks2YdpAQBx5Jx-hbqEqa7MnkrtYX7kUDSq7E"
+                        />
+                      </div>
+                    </td>
+                    <td class="py-3 px-space-md">
+                      <div class="flex flex-col">
+                        <a
+                          class="font-title-md text-title-md font-semibold text-on-surface hover:text-primary-container transition-colors line-clamp-1"
+                          href="#"
+                          >Kit Transmissão Aço 1045 Coroa/Pinhão/Corrente DID
+                          Honda CG 160</a
+                        >
+                        <span
+                          class="font-body-sm text-body-sm text-secondary mt-0.5"
+                          >Coroa 44D, Pinhão 15D, Corrente reforçada 428H x
+                          118L</span
+                        >
+                      </div>
+                    </td>
+                    <td class="py-3 px-space-md">
+                      <div class="flex flex-col font-code-sm text-code-sm">
+                        <span class="font-semibold text-on-surface"
+                          >TRA-DID-CG16</span
+                        >
+                        <span class="text-secondary text-[11px]"
+                          >7896541238901</span
+                        >
+                      </div>
+                    </td>
+                    <td class="py-3 px-space-md">
+                      <span
+                        class="inline-flex px-2 py-0.5 rounded font-label-sm text-label-sm bg-surface-container-high text-on-surface font-medium"
+                        >Transmissão</span
+                      >
+                    </td>
+                    <td class="py-3 px-space-md">
+                      <span
+                        class="font-label-md text-label-md font-semibold text-on-surface"
+                        >DID Japão</span
+                      >
+                    </td>
+                    <td class="py-3 px-space-md">
+                      <span
+                        class="inline-flex items-center gap-1 px-2 py-0.5 rounded font-label-sm text-label-sm bg-secondary-container text-on-secondary-fixed font-medium"
+                      >
+                        <span class="material-symbols-outlined text-[12px]"
+                          >motorcycle</span
+                        >
+                        Honda CG 160 Titan/Fan/Start
+                      </span>
+                    </td>
+                    <td
+                      class="py-3 px-space-md text-right font-code-sm text-code-sm text-secondary"
+                    >
+                      R$ 115,00
+                    </td>
+                    <td class="py-3 px-space-md text-right">
+                      <div class="flex flex-col items-end">
+                        <span
+                          class="font-title-md text-title-md font-bold text-on-surface"
+                          >R$ 189,90</span
+                        >
+                        <span
+                          class="font-label-sm text-label-sm text-tertiary font-semibold flex items-center gap-0.5"
+                        >
+                          <span class="material-symbols-outlined text-[10px]"
+                            >north_east</span
+                          >
+                          +39.4%
+                        </span>
+                      </div>
+                    </td>
+                    <td class="py-3 px-space-md">
+                      <div class="flex flex-col items-center gap-1">
+                        <div
+                          class="flex justify-between w-24 text-[11px] font-code-sm font-semibold"
+                        >
+                          <span class="text-on-surface">32 un</span>
+                          <span class="text-secondary">Mín: 10</span>
+                        </div>
+                        <div
+                          class="w-24 h-2 bg-surface-container-high rounded-full overflow-hidden"
+                        >
+                          <div
+                            class="h-full bg-tertiary rounded-full"
+                            style="width: 65%"
+                          ></div>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="py-3 px-space-md">
+                      <span
+                        class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-label-sm text-label-sm bg-tertiary-fixed/30 text-on-tertiary-fixed-variant font-bold"
+                      >
+                        <span
+                          class="w-1.5 h-1.5 rounded-full bg-tertiary"
+                        ></span>
+                        Em estoque
+                      </span>
+                    </td>
+                    <td class="py-3 px-space-md text-center">
+                      <div class="flex items-center justify-center gap-1">
+                        <button
+                          class="w-8 h-8 rounded-lg text-secondary hover:text-on-surface hover:bg-surface-container transition-colors flex items-center justify-center"
+                          title="Visualizar Detalhes"
+                          type="button"
+                        >
+                          <span class="material-symbols-outlined text-base"
+                            >visibility</span
+                          >
+                        </button>
+                        <button
+                          class="w-8 h-8 rounded-lg text-secondary hover:text-primary-container hover:bg-surface-container transition-colors flex items-center justify-center"
+                          title="Editar Produto"
+                          type="button"
+                        >
+                          <span class="material-symbols-outlined text-base"
+                            >edit</span
+                          >
+                        </button>
+                        <button
+                          class="w-8 h-8 rounded-lg text-secondary hover:text-error hover:bg-surface-container transition-colors flex items-center justify-center"
+                          title="Excluir"
+                          type="button"
+                        >
+                          <span class="material-symbols-outlined text-base"
+                            >delete</span
+                          >
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <!-- Row 5: Oleo Motul 20W50 -->
+                  <tr
+                    class="hover:bg-surface-container-low/60 transition-colors bg-surface-container-lowest"
+                  >
+                    <td class="py-3 px-space-md text-center">
+                      <input
+                        class="w-4 h-4 rounded text-primary-container focus:ring-0 cursor-pointer"
+                        type="checkbox"
+                      />
+                    </td>
+                    <td class="py-3 px-space-sm">
+                      <div
+                        class="relative w-12 h-12 rounded-lg bg-surface-container overflow-hidden shrink-0 flex items-center justify-center"
+                      >
+                        <img
+                          class="w-full h-full object-cover"
+                          data-alt="Motul 4T engine lubricant oil 1 liter bottle, metallic high-performance technical packaging with bold red branding, clean workshop backdrop, studio lighting."
+                          src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvzewc5GC4nx3VVn7LsVt73mkva-dBnzwWsHopn5iHI8LsZa0xdZuPS-wTfG6DEddAGUEe25A-FCxDIRmVQ-PIDqiU-YOwq9GUe5lsRANth2en1G8DLQTURL0Puc9-7gSYb3wr_LwfbAqExSOfwDUVsj5Oj6KklP6VLjBTPgVUS4wkSVxjkTw28TvzXyqo6zGbhm5c4UFEfhjqQzwwK8CPluL5QcK1HBWuvUTEU5f8LaHZkzsQoWdy"
+                        />
+                      </div>
+                    </td>
+                    <td class="py-3 px-space-md">
+                      <div class="flex flex-col">
+                        <a
+                          class="font-title-md text-title-md font-semibold text-on-surface hover:text-primary-container transition-colors line-clamp-1"
+                          href="#"
+                          >Óleo de Motor Motul 20W50 3000 4T Mineral 1L</a
+                        >
+                        <span
+                          class="font-body-sm text-body-sm text-secondary mt-0.5"
+                          >Normas API SL / JASO MA2, proteção anti-desgaste para
+                          embreagens úmidas</span
+                        >
+                      </div>
+                    </td>
+                    <td class="py-3 px-space-md">
+                      <div class="flex flex-col font-code-sm text-code-sm">
+                        <span class="font-semibold text-on-surface"
+                          >LUB-MOT-2050</span
+                        >
+                        <span class="text-secondary text-[11px]"
+                          >3374650239102</span
+                        >
+                      </div>
+                    </td>
+                    <td class="py-3 px-space-md">
+                      <span
+                        class="inline-flex px-2 py-0.5 rounded font-label-sm text-label-sm bg-surface-container-high text-on-surface font-medium"
+                        >Lubrificantes</span
+                      >
+                    </td>
+                    <td class="py-3 px-space-md">
+                      <span
+                        class="font-label-md text-label-md font-semibold text-on-surface"
+                        >Motul</span
+                      >
+                    </td>
+                    <td class="py-3 px-space-md">
+                      <span
+                        class="inline-flex items-center gap-1 px-2 py-0.5 rounded font-label-sm text-label-sm bg-surface-container text-on-surface font-medium"
+                      >
+                        Universal 4T
+                      </span>
+                    </td>
+                    <td
+                      class="py-3 px-space-md text-right font-code-sm text-code-sm text-secondary"
+                    >
+                      R$ 26,00
+                    </td>
+                    <td class="py-3 px-space-md text-right">
+                      <div class="flex flex-col items-end">
+                        <span
+                          class="font-title-md text-title-md font-bold text-on-surface"
+                          >R$ 42,00</span
+                        >
+                        <span
+                          class="font-label-sm text-label-sm text-tertiary font-semibold flex items-center gap-0.5"
+                        >
+                          <span class="material-symbols-outlined text-[10px]"
+                            >north_east</span
+                          >
+                          +38.1%
+                        </span>
+                      </div>
+                    </td>
+                    <td class="py-3 px-space-md">
+                      <div class="flex flex-col items-center gap-1">
+                        <div
+                          class="flex justify-between w-24 text-[11px] font-code-sm font-semibold"
+                        >
+                          <span class="text-on-surface">112 un</span>
+                          <span class="text-secondary">Mín: 24</span>
+                        </div>
+                        <div
+                          class="w-24 h-2 bg-surface-container-high rounded-full overflow-hidden"
+                        >
+                          <div
+                            class="h-full bg-tertiary rounded-full"
+                            style="width: 95%"
+                          ></div>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="py-3 px-space-md">
+                      <span
+                        class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-label-sm text-label-sm bg-tertiary-fixed/30 text-on-tertiary-fixed-variant font-bold"
+                      >
+                        <span
+                          class="w-1.5 h-1.5 rounded-full bg-tertiary"
+                        ></span>
+                        Em estoque
+                      </span>
+                    </td>
+                    <td class="py-3 px-space-md text-center">
+                      <div class="flex items-center justify-center gap-1">
+                        <button
+                          class="w-8 h-8 rounded-lg text-secondary hover:text-on-surface hover:bg-surface-container transition-colors flex items-center justify-center"
+                          title="Visualizar Detalhes"
+                          type="button"
+                        >
+                          <span class="material-symbols-outlined text-base"
+                            >visibility</span
+                          >
+                        </button>
+                        <button
+                          class="w-8 h-8 rounded-lg text-secondary hover:text-primary-container hover:bg-surface-container transition-colors flex items-center justify-center"
+                          title="Editar Produto"
+                          type="button"
+                        >
+                          <span class="material-symbols-outlined text-base"
+                            >edit</span
+                          >
+                        </button>
+                        <button
+                          class="w-8 h-8 rounded-lg text-secondary hover:text-error hover:bg-surface-container transition-colors flex items-center justify-center"
+                          title="Excluir"
+                          type="button"
+                        >
+                          <span class="material-symbols-outlined text-base"
+                            >delete</span
+                          >
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <!-- Row 6: Bateria Pioneiro MBR5 -->
+                  <tr
+                    class="hover:bg-surface-container-low/60 transition-colors bg-surface-container-lowest"
+                  >
+                    <td class="py-3 px-space-md text-center">
+                      <input
+                        class="w-4 h-4 rounded text-primary-container focus:ring-0 cursor-pointer"
+                        type="checkbox"
+                      />
+                    </td>
+                    <td class="py-3 px-space-sm">
+                      <div
+                        class="relative w-12 h-12 rounded-lg bg-surface-container overflow-hidden shrink-0 flex items-center justify-center"
+                      >
+                        <img
+                          class="w-full h-full object-cover"
+                          data-alt="Sealed AGM 12V motorcycle battery with brass battery terminals, industrial engineering aesthetic, clean white background, high contrast automotive product photo."
+                          src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMyjLMGcIqRqyQFKE7vv41sskZZmj7vH-Gya_1J6162w_GpTXR9pOzZZlZMjafLLTB-UCXCR3gh2Xv4rpprdb-nhx20dhpSxPu6QqfnZCYYDCGCPGjYiUjx2RiVH5jI5qfTONaUn3VMTKZUOzj2mcJktKOoQGDAkbieOZmywfHhwSoxJJc4jgV5sqUMxW61rNg6NjUW5Wk5vK3jspaVUjqCbRwfQH2NKdZWoObNBPGdmMM4uvZ4OyX"
+                        />
+                      </div>
+                    </td>
+                    <td class="py-3 px-space-md">
+                      <div class="flex flex-col">
+                        <a
+                          class="font-title-md text-title-md font-semibold text-on-surface hover:text-primary-container transition-colors line-clamp-1"
+                          href="#"
+                          >Bateria Selada Pioneiro 12V 5Ah MBR5</a
+                        >
+                        <span
+                          class="font-body-sm text-body-sm text-secondary mt-0.5"
+                          >Tecnologia AGM VRLA livre de manutenção, ativada de
+                          fábrica com alta partida</span
+                        >
+                      </div>
+                    </td>
+                    <td class="py-3 px-space-md">
+                      <div class="flex flex-col font-code-sm text-code-sm">
+                        <span class="font-semibold text-on-surface"
+                          >ELE-PIO-MBR5</span
+                        >
+                        <span class="text-secondary text-[11px]"
+                          >7897891234567</span
+                        >
+                      </div>
+                    </td>
+                    <td class="py-3 px-space-md">
+                      <span
+                        class="inline-flex px-2 py-0.5 rounded font-label-sm text-label-sm bg-surface-container-high text-on-surface font-medium"
+                        >Elétrica</span
+                      >
+                    </td>
+                    <td class="py-3 px-space-md">
+                      <span
+                        class="font-label-md text-label-md font-semibold text-on-surface"
+                        >Pioneiro</span
+                      >
+                    </td>
+                    <td class="py-3 px-space-md">
+                      <span
+                        class="inline-flex items-center gap-1 px-2 py-0.5 rounded font-label-sm text-label-sm bg-secondary-container text-on-secondary-fixed font-medium"
+                      >
+                        <span class="material-symbols-outlined text-[12px]"
+                          >motorcycle</span
+                        >
+                        Honda CB 250F Twister / Biz 125
+                      </span>
+                    </td>
+                    <td
+                      class="py-3 px-space-md text-right font-code-sm text-code-sm text-secondary"
+                    >
+                      R$ 110,00
+                    </td>
+                    <td class="py-3 px-space-md text-right">
+                      <div class="flex flex-col items-end">
+                        <span
+                          class="font-title-md text-title-md font-bold text-on-surface"
+                          >R$ 179,90</span
+                        >
+                        <span
+                          class="font-label-sm text-label-sm text-tertiary font-semibold flex items-center gap-0.5"
+                        >
+                          <span class="material-symbols-outlined text-[10px]"
+                            >north_east</span
+                          >
+                          +38.8%
+                        </span>
+                      </div>
+                    </td>
+                    <td class="py-3 px-space-md">
+                      <div class="flex flex-col items-center gap-1">
+                        <div
+                          class="flex justify-between w-24 text-[11px] font-code-sm font-semibold"
+                        >
+                          <span class="text-error font-bold">0 un</span>
+                          <span class="text-secondary">Mín: 8</span>
+                        </div>
+                        <div
+                          class="w-24 h-2 bg-surface-container-high rounded-full overflow-hidden"
+                        >
+                          <div
+                            class="h-full bg-error rounded-full"
+                            style="width: 0%"
+                          ></div>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="py-3 px-space-md">
+                      <span
+                        class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-label-sm text-label-sm bg-error-container text-on-error-container font-bold"
+                      >
+                        <span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+                        Esgotado
+                      </span>
+                    </td>
+                    <td class="py-3 px-space-md text-center">
+                      <div class="flex items-center justify-center gap-1">
+                        <button
+                          class="w-8 h-8 rounded-lg text-secondary hover:text-on-surface hover:bg-surface-container transition-colors flex items-center justify-center"
+                          title="Visualizar Detalhes"
+                          type="button"
+                        >
+                          <span class="material-symbols-outlined text-base"
+                            >visibility</span
+                          >
+                        </button>
+                        <button
+                          class="w-8 h-8 rounded-lg text-secondary hover:text-primary-container hover:bg-surface-container transition-colors flex items-center justify-center"
+                          title="Editar Produto"
+                          type="button"
+                        >
+                          <span class="material-symbols-outlined text-base"
+                            >edit</span
+                          >
+                        </button>
+                        <button
+                          class="w-8 h-8 rounded-lg text-secondary hover:text-error hover:bg-surface-container transition-colors flex items-center justify-center"
+                          title="Excluir"
+                          type="button"
+                        >
+                          <span class="material-symbols-outlined text-base"
+                            >delete</span
+                          >
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- Table Pagination Footer -->
+            <div
+              class="px-space-md py-space-sm bg-surface-container-lowest flex flex-col sm:flex-row items-center justify-between gap-space-sm"
+            >
+              <div class="flex items-center gap-space-md">
+                <span class="font-body-sm text-body-sm text-secondary">
+                  Página <strong class="text-on-surface">1</strong> de
+                  <strong class="text-on-surface">125</strong> (Total: 1.248
+                  registros)
+                </span>
+                <div class="flex items-center gap-space-xs">
+                  <span class="font-label-sm text-label-sm text-secondary"
+                    >Itens:</span
+                  >
+                  <select
+                    class="h-8 px-space-xs bg-surface-container-low text-on-surface font-label-sm text-label-sm rounded-lg border-0 focus:outline-none"
+                  >
+                    <option selected="">10</option>
+                    <option>25</option>
+                    <option>50</option>
+                  </select>
+                </div>
+              </div>
+              <div class="flex items-center gap-1">
+                <button
+                  class="w-8 h-8 rounded-lg bg-surface-container-low text-secondary opacity-50 cursor-not-allowed flex items-center justify-center"
+                  disabled=""
+                  type="button"
+                >
+                  <span class="material-symbols-outlined text-sm"
+                    >first_page</span
+                  >
+                </button>
+                <button
+                  class="w-8 h-8 rounded-lg bg-surface-container-low text-secondary opacity-50 cursor-not-allowed flex items-center justify-center"
+                  disabled=""
+                  type="button"
+                >
+                  <span class="material-symbols-outlined text-sm"
+                    >chevron_left</span
+                  >
+                </button>
+                <button
+                  class="w-8 h-8 rounded-lg bg-primary-container text-on-primary-container font-label-md text-label-md font-bold flex items-center justify-center shadow-sm"
+                  type="button"
+                >
+                  1
+                </button>
+                <button
+                  class="w-8 h-8 rounded-lg hover:bg-surface-container-low text-on-surface font-label-md text-label-md font-medium flex items-center justify-center"
+                  type="button"
+                >
+                  2
+                </button>
+                <button
+                  class="w-8 h-8 rounded-lg hover:bg-surface-container-low text-on-surface font-label-md text-label-md font-medium flex items-center justify-center"
+                  type="button"
+                >
+                  3
+                </button>
+                <span class="px-1 text-secondary font-label-md text-label-md"
+                  >...</span
+                >
+                <button
+                  class="w-8 h-8 rounded-lg hover:bg-surface-container-low text-on-surface font-label-md text-label-md font-medium flex items-center justify-center"
+                  type="button"
+                >
+                  125
+                </button>
+                <button
+                  class="w-8 h-8 rounded-lg bg-surface-container-low text-on-surface hover:bg-surface-container flex items-center justify-center"
+                  type="button"
+                >
+                  <span class="material-symbols-outlined text-sm"
+                    >chevron_right</span
+                  >
+                </button>
+                <button
+                  class="w-8 h-8 rounded-lg bg-surface-container-low text-on-surface hover:bg-surface-container flex items-center justify-center"
+                  type="button"
+                >
+                  <span class="material-symbols-outlined text-sm"
+                    >last_page</span
+                  >
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Interactive Modal: Novo Produto (Toggleable) -->
+          <div
+            class="fixed inset-0 z-50 bg-inverse-surface/60 backdrop-blur-sm flex items-center justify-center p-space-md overflow-y-auto"
+            id="modal-novo-produto"
+          >
+            <div
+              class="bg-surface-container-lowest rounded-2xl shadow-2xl w-full max-w-4xl max-h-[92vh] flex flex-col overflow-hidden my-auto animate-in fade-in zoom-in-95 duration-200"
+            >
+              <!-- Modal Header -->
+              <div
+                class="px-space-lg py-space-md bg-surface-container-low flex items-center justify-between"
+              >
+                <div class="flex items-center gap-space-sm">
+                  <div
+                    class="w-10 h-10 rounded-xl bg-primary-container text-on-primary-container flex items-center justify-center"
+                  >
+                    <span class="material-symbols-outlined text-xl"
+                      >two_wheeler</span
+                    >
+                  </div>
+                  <div>
+                    <h2
+                      class="font-headline-sm text-headline-sm font-bold text-on-surface"
+                    >
+                      Cadastrar Novo Produto
+                    </h2>
+                    <p class="font-body-sm text-body-sm text-secondary">
+                      Preencha os campos técnicos e fiscais para indexar ao
+                      estoque central
+                    </p>
+                  </div>
+                </div>
+                <button
+                  class="w-9 h-9 rounded-xl hover:bg-surface-container text-secondary hover:text-on-surface flex items-center justify-center transition-colors"
+                  onclick="
+                    document
+                      .getElementById('modal-novo-produto')
+                      .classList.add('hidden')
+                  "
+                  type="button"
+                >
+                  <span class="material-symbols-outlined">close</span>
+                </button>
+              </div>
+              <!-- Modal Body (Scrollable form sections) -->
+              <div class="p-space-lg overflow-y-auto space-y-space-lg">
+                <!-- Seção 1: Informações do produto -->
+                <div>
+                  <div class="flex items-center gap-space-xs mb-space-sm">
+                    <span
+                      class="w-6 h-6 rounded-full bg-inverse-surface text-surface-container-lowest font-code-sm text-code-sm flex items-center justify-center font-bold"
+                      >1</span
+                    >
+                    <h3
+                      class="font-title-md text-title-md font-bold text-on-surface"
+                    >
+                      Informações do Produto
+                    </h3>
+                  </div>
+                  <div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+                    <div class="md:col-span-2 flex flex-col">
+                      <label
+                        class="font-label-sm text-label-sm text-secondary mb-1"
+                        >Nome Comercial do Produto
+                        <span class="text-primary-container font-bold"
+                          >*</span
+                        ></label
+                      >
+                      <input
+                        class="h-10 px-space-md bg-surface-container-low rounded-xl font-body-md text-body-md text-on-surface focus:outline-none focus:bg-surface-container-lowest shadow-sm"
+                        placeholder="Ex: Kit Pastilha de Freio Dianteira Sinterizada"
+                        type="text"
+                        value="Kit Relação Transmissão Coroa/Pinhão Vaz Aço 1045"
+                      />
+                    </div>
+                    <div class="flex flex-col">
+                      <label
+                        class="font-label-sm text-label-sm text-secondary mb-1"
+                        >SKU do Sistema
+                        <span class="text-primary-container font-bold"
+                          >*</span
+                        ></label
+                      >
+                      <div class="relative">
+                        <input
+                          class="w-full h-10 px-space-md bg-surface-container-low rounded-xl font-code-sm text-code-sm text-on-surface focus:outline-none focus:bg-surface-container-lowest shadow-sm font-semibold"
+                          type="text"
+                          value="TRA-VAZ-CG16"
+                        />
+                        <button
+                          class="absolute right-2 top-1/2 -translate-y-1/2 text-primary hover:text-primary-container"
+                          title="Gerar SKU automático"
+                          type="button"
+                        >
+                          <span class="material-symbols-outlined text-sm"
+                            >autorenew</span
+                          >
+                        </button>
+                      </div>
+                    </div>
+                    <div class="flex flex-col">
+                      <label
+                        class="font-label-sm text-label-sm text-secondary mb-1"
+                        >Código de Barras / EAN-13</label
+                      >
+                      <div class="relative">
+                        <span
+                          class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary text-sm"
+                          >barcode_scanner</span
+                        >
+                        <input
+                          class="w-full h-10 pl-9 pr-space-md bg-surface-container-low rounded-xl font-code-sm text-code-sm text-on-surface focus:outline-none focus:bg-surface-container-lowest shadow-sm"
+                          placeholder="7890000000000"
+                          type="text"
+                          value="7898523697412"
+                        />
+                      </div>
+                    </div>
+                    <div class="flex flex-col">
+                      <label
+                        class="font-label-sm text-label-sm text-secondary mb-1"
+                        >Categoria Principal
+                        <span class="text-primary-container font-bold"
+                          >*</span
+                        ></label
+                      >
+                      <select
+                        class="h-10 px-space-md bg-surface-container-low rounded-xl font-label-md text-label-md text-on-surface focus:outline-none"
+                      >
+                        <option>Relação & Transmissão</option>
+                        <option>Freios & Pastilhas</option>
+                        <option>Pneus & Câmaras</option>
+                        <option>Capacetes & Vestuário</option>
+                        <option>Óleos & Lubrificantes</option>
+                        <option>Elétrica & Baterias</option>
+                      </select>
+                    </div>
+                    <div class="flex flex-col">
+                      <label
+                        class="font-label-sm text-label-sm text-secondary mb-1"
+                        >Marca / Fabricante
+                        <span class="text-primary-container font-bold"
+                          >*</span
+                        ></label
+                      >
+                      <select
+                        class="h-10 px-space-md bg-surface-container-low rounded-xl font-label-md text-label-md text-on-surface focus:outline-none"
+                      >
+                        <option>Vaz Moto Peças</option>
+                        <option>Cobreq</option>
+                        <option>Pirelli</option>
+                        <option>DID Japão</option>
+                        <option>Motul</option>
+                        <option>Pro Tork</option>
+                      </select>
+                    </div>
+                    <div class="md:col-span-3 flex flex-col">
+                      <label
+                        class="font-label-sm text-label-sm text-secondary mb-1"
+                        >Compatibilidade / Aplicação das Motocicletas
+                        <span class="text-primary-container font-bold"
+                          >*</span
+                        ></label
+                      >
+                      <input
+                        class="h-10 px-space-md bg-surface-container-low rounded-xl font-body-md text-body-md text-on-surface focus:outline-none focus:bg-surface-container-lowest shadow-sm"
+                        placeholder="Ex: Honda CG 160 Titan, Fan, Start (2016 a 2024)"
+                        type="text"
+                        value="Honda CG 160 Titan / Fan / Start / Cargo (Todos os Anos)"
+                      />
+                    </div>
+                    <div class="md:col-span-2 flex flex-col">
+                      <label
+                        class="font-label-sm text-label-sm text-secondary mb-1"
+                        >Descrição Técnica / Especificação Detalhada</label
+                      >
+                      <textarea
+                        class="p-space-md bg-surface-container-low rounded-xl font-body-sm text-body-sm text-on-surface focus:outline-none focus:bg-surface-container-lowest shadow-sm resize-none"
+                        rows="3"
+                      >
+Produzido em Aço 1045 com tratamento térmico por indução. Coroa 44 dentes e pinhão 15 dentes retificado. Excelente resistência mecânica para trajetos urbanos pesados.</textarea
+                      >
+                    </div>
+                    <!-- Upload da Imagem Drag & Drop -->
+                    <div class="flex flex-col">
+                      <label
+                        class="font-label-sm text-label-sm text-secondary mb-1"
+                        >Foto da Peça</label
+                      >
+                      <div
+                        class="h-[92px] rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors flex flex-col items-center justify-center text-center p-2 cursor-pointer shadow-sm"
+                      >
+                        <span
+                          class="material-symbols-outlined text-primary text-xl"
+                          >cloud_upload</span
+                        >
+                        <span
+                          class="font-label-sm text-label-sm text-on-surface font-semibold mt-1"
+                          >Arraste a foto ou clique</span
+                        >
+                        <span class="text-[10px] text-secondary"
+                          >PNG, JPG até 5MB</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Seção 2: Informações de Estoque & Localização -->
+                <div>
+                  <div class="flex items-center gap-space-xs mb-space-sm">
+                    <span
+                      class="w-6 h-6 rounded-full bg-inverse-surface text-surface-container-lowest font-code-sm text-code-sm flex items-center justify-center font-bold"
+                      >2</span
+                    >
+                    <h3
+                      class="font-title-md text-title-md font-bold text-on-surface"
+                    >
+                      Informações de Estoque
+                    </h3>
+                  </div>
+                  <div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+                    <div class="flex flex-col">
+                      <label
+                        class="font-label-sm text-label-sm text-secondary mb-1"
+                        >Quantidade Inicial Recebida
+                        <span class="text-primary-container font-bold"
+                          >*</span
+                        ></label
+                      >
+                      <input
+                        class="h-10 px-space-md bg-surface-container-low rounded-xl font-code-sm text-code-sm text-on-surface focus:outline-none focus:bg-surface-container-lowest shadow-sm"
+                        type="number"
+                        value="25"
+                      />
+                    </div>
+                    <div class="flex flex-col">
+                      <label
+                        class="font-label-sm text-label-sm text-secondary mb-1"
+                        >Estoque Mínimo de Segurança
+                        <span class="text-primary-container font-bold"
+                          >*</span
+                        ></label
+                      >
+                      <input
+                        class="h-10 px-space-md bg-surface-container-low rounded-xl font-code-sm text-code-sm text-on-surface focus:outline-none focus:bg-surface-container-lowest shadow-sm"
+                        type="number"
+                        value="8"
+                      />
+                    </div>
+                    <div class="flex flex-col">
+                      <label
+                        class="font-label-sm text-label-sm text-secondary mb-1"
+                        >Endereço no Galpão (Bin / Posição)</label
+                      >
+                      <div class="relative">
+                        <span
+                          class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary text-sm"
+                          >warehouse</span
+                        >
+                        <input
+                          class="w-full h-10 pl-9 pr-space-md bg-surface-container-low rounded-xl font-body-sm text-body-sm text-on-surface focus:outline-none focus:bg-surface-container-lowest shadow-sm"
+                          placeholder="Ex: Corredor B - Prateleira 4"
+                          type="text"
+                          value="Corredor C - Prateleira 2 - Gaveta 08"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Seção 3: Informações comerciais & Cálculo Automático -->
+                <div>
+                  <div class="flex items-center gap-space-xs mb-space-sm">
+                    <span
+                      class="w-6 h-6 rounded-full bg-inverse-surface text-surface-container-lowest font-code-sm text-code-sm flex items-center justify-center font-bold"
+                      >3</span
+                    >
+                    <h3
+                      class="font-title-md text-title-md font-bold text-on-surface"
+                    >
+                      Informações Comerciais & Margem
+                    </h3>
+                  </div>
+                  <div
+                    class="grid grid-cols-1 md:grid-cols-3 gap-space-md items-end"
+                  >
+                    <div class="flex flex-col">
+                      <label
+                        class="font-label-sm text-label-sm text-secondary mb-1"
+                        >Preço de Custo (NF-e)
+                        <span class="text-primary-container font-bold"
+                          >*</span
+                        ></label
+                      >
+                      <div class="relative">
+                        <span
+                          class="absolute left-3 top-1/2 -translate-y-1/2 font-code-sm text-code-sm text-secondary font-bold"
+                          >R$</span
+                        >
+                        <input
+                          class="w-full h-10 pl-10 pr-space-md bg-surface-container-low rounded-xl font-code-sm text-code-sm text-on-surface focus:outline-none focus:bg-surface-container-lowest shadow-sm"
+                          type="text"
+                          value="82,00"
+                        />
+                      </div>
+                    </div>
+                    <div class="flex flex-col">
+                      <label
+                        class="font-label-sm text-label-sm text-secondary mb-1"
+                        >Preço de Venda Praticado
+                        <span class="text-primary-container font-bold"
+                          >*</span
+                        ></label
+                      >
+                      <div class="relative">
+                        <span
+                          class="absolute left-3 top-1/2 -translate-y-1/2 font-code-sm text-code-sm text-secondary font-bold"
+                          >R$</span
+                        >
+                        <input
+                          class="w-full h-10 pl-10 pr-space-md bg-surface-container-low rounded-xl font-code-sm text-code-sm text-on-surface focus:outline-none focus:bg-surface-container-lowest shadow-sm"
+                          type="text"
+                          value="149,90"
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="h-10 px-space-md bg-tertiary-fixed/30 rounded-xl flex items-center justify-between"
+                    >
+                      <div
+                        class="flex items-center gap-1 text-on-tertiary-fixed-variant"
+                      >
+                        <span class="material-symbols-outlined text-sm"
+                          >trending_up</span
+                        >
+                        <span class="font-label-sm text-label-sm font-bold"
+                          >Margem Calculada:</span
+                        >
+                      </div>
+                      <span
+                        class="font-title-md text-title-md font-bold text-tertiary"
+                        >45.3% (Markup 1.83x)</span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <!-- Seção 4: Fornecedor Parceiro -->
+                <div>
+                  <div class="flex items-center gap-space-xs mb-space-sm">
+                    <span
+                      class="w-6 h-6 rounded-full bg-inverse-surface text-surface-container-lowest font-code-sm text-code-sm flex items-center justify-center font-bold"
+                      >4</span
+                    >
+                    <h3
+                      class="font-title-md text-title-md font-bold text-on-surface"
+                    >
+                      Fornecedor Credenciado
+                    </h3>
+                  </div>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+                    <div class="flex flex-col">
+                      <label
+                        class="font-label-sm text-label-sm text-secondary mb-1"
+                        >Fornecedor Homologado
+                        <span class="text-primary-container font-bold"
+                          >*</span
+                        ></label
+                      >
+                      <select
+                        class="h-10 px-space-md bg-surface-container-low rounded-xl font-label-md text-label-md text-on-surface focus:outline-none"
+                      >
+                        <option>
+                          Distribuidora Paulista Ltda - CNPJ: 12.345.678/0001-90
+                        </option>
+                        <option>
+                          MotoPeças Brasil Atacado - CNPJ: 98.765.432/0001-11
+                        </option>
+                        <option>
+                          Rinaldi & Cia Distribuição - CNPJ: 45.678.901/0002-33
+                        </option>
+                      </select>
+                    </div>
+                    <div class="flex flex-col">
+                      <label
+                        class="font-label-sm text-label-sm text-secondary mb-1"
+                        >Código do Produto no Fabricante</label
+                      >
+                      <input
+                        class="h-10 px-space-md bg-surface-container-low rounded-xl font-code-sm text-code-sm text-on-surface focus:outline-none focus:bg-surface-container-lowest shadow-sm"
+                        placeholder="Ex: FAB-9921-X"
+                        type="text"
+                        value="VAZ-CP-160-PRO"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Modal Footer Action Buttons -->
+              <div
+                class="px-space-lg py-space-md bg-surface-container-low flex items-center justify-between"
+              >
+                <span class="font-body-sm text-body-sm text-secondary">
+                  <span class="text-primary-container font-bold">*</span> Campos
+                  obrigatórios para validação fiscal
+                </span>
+                <div class="flex items-center gap-space-sm">
+                  <button
+                    class="h-10 px-space-lg bg-surface-container hover:bg-surface-container-high text-on-surface rounded-xl font-label-md text-label-md font-semibold transition-colors"
+                    onclick="
+                      document
+                        .getElementById('modal-novo-produto')
+                        .classList.add('hidden')
+                    "
+                    type="button"
+                  >
+                    Cancelar
+                  </button>
+                  <button
+                    class="h-10 px-space-xl bg-primary-container hover:bg-primary text-on-primary-container rounded-xl font-label-md text-label-md font-bold shadow-md transition-all hover:shadow-lg flex items-center gap-1.5"
+                    onclick="
+                      document
+                        .getElementById('modal-novo-produto')
+                        .classList.add('hidden')
+                    "
+                    type="button"
+                  >
+                    <span class="material-symbols-outlined text-sm"
+                      >check_circle</span
+                    >
+                    <span>Salvar Produto</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

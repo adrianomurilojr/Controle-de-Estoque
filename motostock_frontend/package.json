@@ -1,0 +1,13 @@
+{
+  "name": "motostock-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Frontend estatico do MotoStock (telas HTML + Tailwind via CDN)",
+  "scripts": {
+    "start": "live-server --port=5173 --host=localhost --entry-file=index.html",
+    "serve": "serve -l 5173"
+  },
+  "devDependencies": {
+    "live-server": "1.2.2"
+  }
+}

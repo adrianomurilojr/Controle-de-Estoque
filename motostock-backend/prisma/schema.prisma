@@ -1,0 +1,181 @@
+// Schema do banco de dados do MotoStock (versao SQLite)
+// Rode `npx prisma migrate dev --name init` para criar as tabelas
+//
+// Observacao: nesta versao os enums foram convertidos para String porque
+// o conector SQLite do Prisma nao suporta enums nativos. Os valores validos
+// de cada campo estao anotados em comentario ao lado, e sao os MESMOS usados
+// pelo backend (services/seed), entao nada muda no codigo TS.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ================== MODELOS ==================
+
+model User {
+  id            String    @id @default(uuid())
+  name          String
+  email         String    @unique
+  passwordHash  String
+  role          String    @default("FUNCIONARIO") // ADMINISTRADOR | FUNCIONARIO
+  status        String    @default("ATIVO")        // ATIVO | INATIVO
+  avatarUrl     String?
+  lastAccessAt  DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  movements       StockMovement[]
+  stockOperations StockOperation[]
+  notifications   Notification[]
+
+  @@map("users")
+}
+
+model Category {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  description String?
+  status      String   @default("ATIVO") // ATIVO | INATIVO
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  products Product[]
+
+  @@map("categories")
+}
+
+model Supplier {
+  id            String   @id @default(uuid())
+  legalName     String // Razao social
+  tradeName     String? // Nome fantasia
+  document      String   @unique // CNPJ ou CPF
+  phone         String?
+  whatsapp      String?
+  email         String?
+  zipCode       String?
+  address       String?
+  number        String?
+  neighborhood  String?
+  city          String?
+  state         String?
+  observations  String?
+  status        String   @default("ATIVO") // ATIVO | INATIVO
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  products        Product[]
+  stockOperations StockOperation[]
+
+  @@map("suppliers")
+}
+
+model Product {
+  id           String   @id @default(uuid())
+  name         String
+  sku          String   @unique
+  barcode      String?  @unique
+  categoryId   String
+  brand        String?
+  application  String? // modelo/aplicacao da motocicleta
+  description  String?
+  costPrice    Decimal
+  salePrice    Decimal
+  currentStock Int      @default(0)
+  minStock     Int      @default(0)
+  location     String? // localizacao fisica no estoque
+  photoUrl     String?
+  supplierId   String?
+  supplierProductCode String? // codigo/referencia do produto no catalogo do fabricante
+  status       String   @default("ATIVO") // ATIVO | INATIVO
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  category Category  @relation(fields: [categoryId], references: [id])
+  supplier Supplier? @relation(fields: [supplierId], references: [id])
+
+  movements      StockMovement[]
+  operationItems StockOperationItem[]
+
+  @@index([categoryId])
+  @@index([supplierId])
+  @@map("products")
+}
+
+// Cabecalho de uma operacao de estoque (entrada, saida ou ajuste em lote)
+model StockOperation {
+  id            String   @id @default(uuid())
+  type          String // ENTRADA | SAIDA | AJUSTE
+  supplierId    String? // usado em entradas
+  invoiceNumber String? // nota fiscal, usado em entradas
+  referenceCode String? // referencia do documento de origem: n pedido de balcao, n de O.S., etc.
+  reason        String? // usado em saidas: VENDA | PERDA | AVARIA | USO_INTERNO | OUTRO
+  observation   String?
+  totalItems    Int      @default(0)
+  totalValue    Decimal  @default(0)
+  userId        String
+  createdAt     DateTime @default(now())
+
+  supplier  Supplier? @relation(fields: [supplierId], references: [id])
+  user      User      @relation(fields: [userId], references: [id])
+  items     StockOperationItem[]
+  movements StockMovement[]
+
+  @@map("stock_operations")
+}
+
+// Item de uma operacao de estoque (um produto dentro de uma entrada/saida/ajuste)
+model StockOperationItem {
+  id            String  @id @default(uuid())
+  operationId   String
+  productId     String
+  quantity      Int
+  unitPrice     Decimal @default(0)
+  previousStock Int
+  newStock      Int
+
+  operation StockOperation @relation(fields: [operationId], references: [id], onDelete: Cascade)
+  product   Product        @relation(fields: [productId], references: [id])
+
+  @@map("stock_operation_items")
+}
+
+// Registro individual de movimentacao (linha do historico, 1 por produto)
+model StockMovement {
+  id            String   @id @default(uuid())
+  productId     String
+  operationId   String?
+  type          String // ENTRADA | SAIDA | AJUSTE
+  quantity      Int
+  previousStock Int
+  newStock      Int
+  reason        String? // VENDA | PERDA | AVARIA | USO_INTERNO | OUTRO
+  observation   String?
+  userId        String
+  createdAt     DateTime @default(now())
+
+  product   Product         @relation(fields: [productId], references: [id])
+  user      User            @relation(fields: [userId], references: [id])
+  operation StockOperation? @relation(fields: [operationId], references: [id])
+
+  @@index([productId])
+  @@index([createdAt])
+  @@map("stock_movements")
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  type      String // ESTOQUE_BAIXO | SEM_ESTOQUE | ENTRADA_REGISTRADA | SAIDA_REGISTRADA | AJUSTE_ESTOQUE | SISTEMA
+  message   String
+  read      Boolean  @default(false)
+  userId    String? // null = notificacao global (todos os usuarios)
+  createdAt DateTime @default(now())
+
+  user User? @relation(fields: [userId], references: [id])
+
+  @@map("notifications")
+}

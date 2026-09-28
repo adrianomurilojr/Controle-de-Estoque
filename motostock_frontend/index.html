@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MotoStock — Painel de Telas</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Outfit:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body { font-family: 'Inter', sans-serif; }
+      h1, h2, .display { font-family: 'Outfit', sans-serif; }
+    </style>
+  </head>
+  <body class="bg-[#f8f9ff] text-[#0b1c30] min-h-screen antialiased">
+    <header class="bg-[#213145] text-white">
+      <div class="max-w-5xl mx-auto px-6 py-8">
+        <p class="uppercase tracking-widest text-xs text-[#bec6e0] font-semibold">Parts ERP Telemetry</p>
+        <h1 class="display text-4xl font-bold tracking-tight mt-1">MotoStock — Frontend</h1>
+        <p class="text-[#dae2fd] mt-2 text-sm">
+          Painel para abrir as telas estáticas do sistema. Backend esperado em
+          <code class="bg-white/10 px-1.5 py-0.5 rounded">http://localhost:3333/api</code>
+        </p>
+        <div class="mt-4 flex items-center gap-3 flex-wrap">
+          <div id="api-status" class="inline-flex items-center gap-2 text-sm px-3 py-1.5 rounded-full bg-white/10">
+            <span class="w-2 h-2 rounded-full bg-yellow-400"></span>
+            <span>Verificando conexão com a API…</span>
+          </div>
+          <span id="user-badge" class="hidden text-sm text-[#dae2fd]">Olá, <strong id="user-name"></strong></span>
+          <button id="logout-btn" type="button"
+            class="hidden text-sm px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 transition-colors">Sair</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-6 py-10">
+      <h2 class="text-lg font-semibold mb-4">Telas disponíveis</h2>
+      <div id="cards" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+
+      <div class="mt-10 p-5 rounded-xl bg-[#dce9ff] text-[#0b1c30]">
+        <p class="font-semibold mb-1">Observação</p>
+        <p class="text-sm text-[#3f465c]">
+          Abra sempre pelo endereço <code class="bg-white/60 px-1 rounded">http://localhost:5173</code>
+          (via <code class="bg-white/60 px-1 rounded">npm start</code>) — abrir os arquivos direto
+          (<code class="bg-white/60 px-1 rounded">file://</code>) faz o navegador bloquear as chamadas por CORS.
+          A tela de <strong>Estoque</strong> já consome dados reais do backend via
+          <code class="bg-white/60 px-1 rounded">fetch()</code>; as demais ainda usam dados de exemplo fixos.
+        </p>
+      </div>
+    </main>
+
+    <script>
+      // Portao de autenticacao: sem token, vai para a tela de login.
+      (function () {
+        var TOKEN_KEY = 'motostock_token';
+        try {
+          if (!localStorage.getItem(TOKEN_KEY)) {
+            location.href = 'login.html?next=' + encodeURIComponent('index.html');
+          }
+        } catch (e) {}
+      })();
+
+      // Mostra o usuario logado e liga o botao Sair.
+      (function () {
+        try {
+          var u = JSON.parse(localStorage.getItem('motostock_user') || 'null');
+          if (u) {
+            var badge = document.getElementById('user-badge');
+            document.getElementById('user-name').textContent = u.name || u.email || '';
+            badge.classList.remove('hidden');
+          }
+        } catch (e) {}
+        var btn = document.getElementById('logout-btn');
+        btn.classList.remove('hidden');
+        btn.addEventListener('click', function () {
+          try {
+            localStorage.removeItem('motostock_token');
+            localStorage.removeItem('motostock_user');
+          } catch (e) {}
+          location.href = 'login.html';
+        });
+      })();
+
+      // Ajuste os caminhos caso os nomes das pastas sejam diferentes.
+      var screens = [
+        { title: 'Dashboard', desc: 'Visão geral e indicadores', icon: '📊', path: 'motostock_dashboard/code.html' },
+        { title: 'Produtos', desc: 'Catálogo de peças', icon: '🏍️', path: 'motostock_produtos/code.html' },
+        { title: 'Estoque & Movimentações', desc: 'Saldos, entradas e saídas', icon: '📦', path: 'motostock_controle_de_estoque/code.html' },
+        { title: 'Logo / Marca', desc: 'Identidade visual', icon: '🏷️', path: 'motostock_logo/code.html' }
+      ];
+
+      var cards = document.getElementById('cards');
+      screens.forEach(function (s) {
+        var a = document.createElement('a');
+        a.href = s.path;
+        a.className =
+          'block p-5 rounded-xl bg-white shadow-sm hover:shadow-md transition-shadow border border-[#e5eeff]';
+        var icon = document.createElement('div');
+        icon.className = 'text-3xl mb-3';
+        icon.textContent = s.icon;
+        var h3 = document.createElement('h3');
+        h3.className = 'font-semibold text-[#0b1c30]';
+        h3.textContent = s.title;
+        var p = document.createElement('p');
+        p.className = 'text-sm text-[#5c647a] mt-0.5';
+        p.textContent = s.desc;
+        a.appendChild(icon);
+        a.appendChild(h3);
+        a.appendChild(p);
+        cards.appendChild(a);
+      });
+
+      // Checagem simples de saude da API.
+      // Observacao: a raiz /api nao tem rota (retorna 404) — por isso apontamos
+      // para um endpoint real e usamos no-cors: so queremos saber se o servidor
+      // responde. As chamadas de dados de verdade (na tela de Estoque) precisam
+      // ser abertas via http://localhost:5173 para o CORS liberar a leitura.
+      (function checkApi() {
+        var box = document.getElementById('api-status');
+        fetch('http://localhost:3333/api/stock', { mode: 'no-cors' })
+          .then(function () {
+            box.innerHTML =
+              '<span class="w-2 h-2 rounded-full bg-green-400"></span><span>API alcançável em localhost:3333</span>';
+          })
+          .catch(function () {
+            box.innerHTML =
+              '<span class="w-2 h-2 rounded-full bg-red-400"></span><span>API não respondeu (verifique se o backend está rodando)</span>';
+          });
+      })();
+    </script>
+  </body>
+</html>
